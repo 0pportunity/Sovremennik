@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Sovremennik.Models;
 
 namespace Sovremennik.Data
@@ -10,10 +12,16 @@ namespace Sovremennik.Data
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Tag> Tags { get; set; } = null!;
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
-            : base(options)
+        private string ConnectionString;
+        public ApplicationContext(string strConnect)
         {
+            ConnectionString = strConnect;
             Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(@"Data Source={ConnectionString}");
         }
     }
 }

@@ -1,10 +1,16 @@
-﻿namespace Sovremennik.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace Sovremennik.Models
 {
     /// <summary>
     /// Статья
     /// </summary>
     public class Article
     {
+        [Key]
+        public int Id { get; set; }
+
         /// <summary>
         /// Заголовок
         /// </summary>
@@ -29,12 +35,12 @@
         /// Конструктор, значения Empty - кроме автор-ID
         /// </summary>
         /// <param name="user"></param>
-        public Article(User user) 
-        {
-            this.AuthorId = user.Id;
-            this.Title = string.Empty;
-            this.Description = string.Empty;
-            this.Content = string.Empty;
-        }
+        //public Article(User user) 
+        //{
+        //    this.AuthorId = user.Id;
+        //    this.Title = string.Empty;
+        //    this.Description = string.Empty;
+        //    this.Content = string.Empty;
+        //}
     }
 }
