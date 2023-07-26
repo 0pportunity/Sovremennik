@@ -5,22 +5,33 @@ using Sovremennik.Models;
 
 namespace Sovremennik.Controllers
 {
-    public class HomeController : Controller
+    public class UserController : Controller
     {
-        ApplicationContext db;
-        public HomeController(ApplicationContext context)
+        private ApplicationContext db;
+
+        public UserController(ApplicationContext context)
         {
             db = context;
         }
 
-        public async Task<IActionResult> Index()
+        // получение всех пользователей
+        public async Task<IActionResult> GetAll()
         {
             return View(await db.Users.ToListAsync());
         }
+
+        // получение одного пользователя по Id
+        public async Task<IActionResult> GetUser(int Id)
+        {
+            return View(await db.Users.FirstOrDefaultAsync(u => u.Id == Id));
+        }
+
         public IActionResult Create()
         {
             return View();
         }
+
+        // добавление пользователя (логика регистрации)
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Sovremennik.Models
 {
@@ -14,6 +15,9 @@ namespace Sovremennik.Models
         /// <summary>
         /// Содержание тега
         /// </summary>
-        public string Content { get; private set; }
+        public string Content { get; set; }
+
+        public int ArticleId { get; set; }      // внешний ключ
+        public Article? Article { get; set; }    // навигационное свойство
     }
 }

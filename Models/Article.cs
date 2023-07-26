@@ -31,16 +31,6 @@ namespace Sovremennik.Models
         /// </summary>
         public string Content { get; private set; }
 
-        /// <summary>
-        /// Конструктор, значения Empty - кроме автор-ID
-        /// </summary>
-        /// <param name="user"></param>
-        //public Article(User user) 
-        //{
-        //    this.AuthorId = user.Id;
-        //    this.Title = string.Empty;
-        //    this.Description = string.Empty;
-        //    this.Content = string.Empty;
-        //}
+        List<Tag> Tags { get; set; } = new List<Tag>();
     }
 }
